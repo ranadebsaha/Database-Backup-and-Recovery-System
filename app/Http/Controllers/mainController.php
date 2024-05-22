@@ -5,6 +5,8 @@ use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Session;
+use Storage;
+use Artisan;
 class mainController extends Controller
 {
    public function view_form(){
@@ -86,6 +88,29 @@ public function delete($id){
         }
     }else{
         return redirect('login')->with('error',"Please Login First");
+    }
+   }
+
+   public function backup(){
+    if (Session::has('admin_id')) {
+        $table='users';
+        $backupfile=storage_path('app/backup.sql');
+        $command=sprintf('mysqldump --user=%s --password=%s --host=%s %s %s > %s',env('DB_USERNAME'),env('DB_PASSWORD'),env('DB_HOST'),env('DB_DATABASE'),$table,$backupfile);
+        exec($command);
+        return redirect('dashboard')->with('success',"Backup Completed");
+    }else{
+        return redirect('login');
+    }
+   }
+
+   public function restore(){
+    if (Session::has('admin_id')) {
+    $filepath=storage_path('app/backup.sql');
+    $command=sprintf('mysql -u%s -p%s %s < %s',env('DB_USERNAME'),env('DB_PASSWORD'),env('DB_DATABASE'),$filepath);
+    exec($command);
+    return redirect('dashboard')->with('success',"Restore Completed");
+    }else{
+        return redirect('login');
     }
    }
 }

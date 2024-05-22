@@ -14,3 +14,5 @@ Route::post('/login',[mainController::class,'login']);
 Route::get('/dashboard',[mainController::class,'view_dashboard']);
 Route::get('/logout',[mainController::class,'logout']);
 Route::get('/delete/{id}',[mainController::class,'delete']);
+Route::get('/backup',[mainController::class,'backup']);
+Route::get('/restore',[mainController::class,'restore']);
