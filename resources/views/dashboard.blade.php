@@ -1,14 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DBRS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container p-4">
-    @if(Session::has('success'))
+</head>
+<body>
+<div class="container p-4">
+@if(Session::has('success'))
                     <div class="alert alert-success">
                         {{Session::get('success')}}
                     </div>
@@ -19,8 +18,8 @@
                     </div>
                     @endif
       <div class="m-3">
-                    <a class="bg-primary text-white p-2" href="{{url('/')}}">Register</a>
-                    <a class="ml-2 bg-primary text-white p-2" href="{{url('/login')}}">Admin</a>
+                    <a class="bg-primary text-white p-2" href="{{url('/')}}">Backup</a>
+                    <a class="ml-2 bg-danger text-white p-2" href="{{url('/logout')}}">Logout</a>
 </div>
                     <div
         class="table-responsive"
@@ -36,6 +35,7 @@
               <th scope="col">Address</th>
               <th scope="col">City</th>
               <th scope="col">Zip Code</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -47,13 +47,12 @@
               <td>{{$user->address}}</td>
               <td>{{$user->city}}</td>
               <td>{{$user->zipcode}}</td>
+              <td><a href="{{url('/delete')}}/{{$user->id}}">Delete</a></td>
             </tr>
             @endforeach
           </tbody>
         </table>
       </div>
 </div>
-      
 </body>
 </html>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

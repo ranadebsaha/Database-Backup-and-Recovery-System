@@ -8,9 +8,10 @@
   </head>
   <body>
       <div class="container p-4">
+      <h2 class="text-center">Register</h2>
         <div>
       <a class="bg-primary text-white p-2" href="{{url('/list')}}">List</button>
-                    <a class="ml-2 bg-primary text-white p-2" href="{{url('/admin')}}">Admin</a>
+                    <a class="ml-2 bg-primary text-white p-2" href="{{url('/login')}}">Admin</a>
 </div>
                     <form class="row g-3" method="post" action="{{url('/')}}/">
           @if(Session::has('success'))
